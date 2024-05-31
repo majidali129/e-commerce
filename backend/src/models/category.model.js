@@ -23,12 +23,12 @@ const categorySchema = mongoose.Schema(
         type: String,
         required: [true, 'Category image is required'],
       },
-    //   featuredProducts: [
-    //     {
-    //       type: mongoose.Schema.Types.ObjectId,
-    //       ref: 'Product',
-    //     },
-    //   ],
+      featuredProducts: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Product',
+        },
+      ],
       isActive: {
         type: Boolean,
         default: true,

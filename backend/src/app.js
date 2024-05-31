@@ -4,6 +4,7 @@ import morgan from 'morgan'
 
 import userRouter from '../src/routes/user.routes.js'
 import productRouter from '../src/routes/products.routes.js'
+import cartRouter from '../src/routes/cart.routes.js'
 
 export const app = express()
 
@@ -16,3 +17,4 @@ app.use(cookieParser())
 // routes mounting
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/products', productRouter)
+app.use('/api/v1/cart', cartRouter)

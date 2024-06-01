@@ -1,4 +1,4 @@
-import { asyncHandler } from '../utils/asyncHandler';
+import { asyncHandler } from '../utils/asyncHandler.js';
 import { Address } from '../models/address.model.js';
 import { apiResponse } from '../utils/apiResponse.js';
 import { apiError } from '../utils/apiError.js';
@@ -6,6 +6,7 @@ import { getMongoosePaginationOptions } from '../utils/helpers.js';
 
 const createAddress = asyncHandler(async (req, res, next) => {
   const { addressLine1, addressLine2, city, country, pincode, state } = req.body;
+
   const owner = req.user._id;
 
   const newAddress = await Address.create({

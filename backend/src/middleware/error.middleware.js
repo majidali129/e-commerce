@@ -22,17 +22,17 @@ export const errorHandler = (err, req, res, next) => {
     const statusCode = error.statusCode || error instanceof mongoose.Error ? 400 : 500;
 
     // set error message for native error instance or custom one
-    const message = error.message || 'something went wrong'
-    error = new apiError(statusCode, message, err.stack)
+    const message = error.message || 'something went wrong';
+    error = new apiError(statusCode, message, err.stack);
   }
 
   const response = {
     ...error,
     message: error.message,
-    ...(process.env.NODE_ENV==='development'? {stack: error.stack}: {})
-  }
+    ...(process.env.NODE_ENV === 'development' ? { stack: error.stack } : {}),
+  };
 
-  logger.error(`${error.message}`)
+  logger.error(`${error.message}`);
 
-  return res.status(error.statusCode).json(response)
+  return res.status(error.statusCode).json(response);
 };

@@ -1,6 +1,4 @@
-import { body, param } from "express-validator";
-
-
+import { body, param } from 'express-validator';
 
 /**
  *
@@ -10,10 +8,8 @@ import { body, param } from "express-validator";
  * @description  A common validator responsible to validate mongodb ids passed in URLs path variable
  */
 export const mongoIdPathValidator = (idName) => {
-    return [
-        param(idName).notEmpty().isMongoId().withMessage(`Invalid ${idName}`)
-    ]
-}
+  return [param(idName).notEmpty().isMongoId().withMessage(`Invalid ${idName}`)];
+};
 
 /**
  *
@@ -23,7 +19,5 @@ export const mongoIdPathValidator = (idName) => {
  * @description  A common validator responsible to validate mongodb ids passed request body
  */
 export const mongoIdRequestBodyValidator = (idName) => {
-    return [
-        body(idName).notEmpty().isMongoId().withMessage(`Invalid ${idName}`)
-    ]
-}
+  return [body(idName).notEmpty().isMongoId().withMessage(`Invalid ${idName}`)];
+};

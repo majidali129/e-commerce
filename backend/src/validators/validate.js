@@ -1,8 +1,7 @@
-import { validationResult } from "express-validator";
+import { validationResult } from 'express-validator';
 
-import { errorHandler } from "../middleware/error.middleware.js";
-import { apiError } from "../utils/apiError.js";
-
+import { errorHandler } from '../middleware/error.middleware.js';
+import { apiError } from '../utils/apiError.js';
 
 /**
  *
@@ -16,17 +15,15 @@ import { apiError } from "../utils/apiError.js";
  *
  */
 
-
 export const validate = (req, res, next) => {
-    const error = validationResult(req);
+  const errors = validationResult(req);
 
-    if(error.isEmpty()) return next();
+  if (errors.isEmpty()) return next();
 
-    const extractedErrors = [];
+  const extractedErrors = [];
 
-    error.array().map(err => extractedErrors.push({[err.path]: err.msg}))
+  errors.array().map((err) => extractedErrors.push({ [err.path]: err.msg }));
 
-
-    // 422 => Unprocessable Entity
-    return next(new apiError(422, 'Received data is not valid', extractedErrors))
-}
+  // 422 => Unprocessable Entity
+  return next(new apiError(422, 'Received data is not valid', extractedErrors));
+};
